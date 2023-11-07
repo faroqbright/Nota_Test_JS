@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Button Swapping</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      button {
+        margin: 5px;
+      }
+      .btn-container {
+        display: flex;
+        flex-direction: column;
+        width: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="btn-container">
+      <button id="btn1">1</button>
+      <button id="btn2">2</button>
+      <button id="btn3">3</button>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        $('button').click(function () {
+          var $this = $(this)
+          var $prevButton = $this.prev()
+          var $nextButton = $this.next()
+
+          if ($prevButton.length > 0) {
+            // Swap with the previous button if it exists
+            $prevButton.before($this)
+          } else if ($nextButton.length > 0) {
+            // Swap with the next button if there is no previous button
+            $nextButton.after($this)
+          }
+        })
+      })
+    </script>
+  </body>
+</html>
